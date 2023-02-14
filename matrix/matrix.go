@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func new(v ...[]float64) *Matrix {
+func New(v ...[]float64) *Matrix {
 	m := Matrix{}
 	m.Set(v)
 	return &m
