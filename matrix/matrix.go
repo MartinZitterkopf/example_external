@@ -5,18 +5,18 @@ import (
 	"math"
 )
 
+func new(v ...[]float64) *Matrix {
+	m := Matrix{}
+	m.Set(v)
+	return &m
+}
+
 type Matrix struct {
 	M         [][]float64
 	H         int64
 	W         int64
 	quadratic bool
 	maxValue  float64
-}
-
-func new(v ...[]float64) *Matrix {
-	m := Matrix{}
-	m.Set(v)
-	return &m
 }
 
 func (m *Matrix) Set(v [][]float64) {
