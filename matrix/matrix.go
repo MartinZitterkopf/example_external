@@ -55,3 +55,65 @@ func (m *Matrix) Print() {
 	fmt.Println((*m).H, "x", (*m).W)
 	fmt.Println()
 }
+
+func One(h, w int) *Matrix {
+	return make(h, w, 1)
+}
+
+func Null(h, w int) *Matrix {
+	return make(h, w, 0)
+}
+
+func make(h, w int, value float64) *Matrix {
+	var matrix [][]float64
+	for i := 0; i < h; i++ {
+		var vec []float64
+		for j := 0; j < w; j++ {
+			vec = append(vec, value)
+		}
+		matrix = append(matrix, vec)
+	}
+	m := Matrix{}
+	m.Set(matrix)
+	return &m
+}
+
+func File() {
+
+}
+
+func (m *Matrix) Suma(v *Matrix) *Matrix {
+
+	if (*m).H != (*v).H || (*m).W != (*v).W {
+		panic("error en el tamaño de la matriz")
+	}
+
+	var msum [][]float64
+
+	for i := 0; i < len((*m).M); i++ {
+		vec := (*m).M[i]
+		for j := 0; j < len((*m).M[i]); j++ {
+			vec[j] = vec[j] + (*v).M[i][j]
+		}
+		msum = append(msum, vec)
+	}
+	return NewM(msum...)
+}
+
+func (m *Matrix) Resta(v *Matrix) *Matrix {
+
+	if (*m).H != (*v).H || (*m).W != (*v).W {
+		panic("error en el tamaño de la matriz")
+	}
+
+	var mrest [][]float64
+
+	for i := 0; i < len((*m).M); i++ {
+		vec := (*m).M[i]
+		for j := 0; j < len((*m).M[i]); j++ {
+			vec[j] = vec[j] - (*v).M[i][j]
+		}
+		mrest = append(mrest, vec)
+	}
+	return NewM(mrest...)
+}
